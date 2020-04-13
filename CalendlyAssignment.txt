@@ -1,0 +1,29 @@
+* Where would these run in the SDLC? 
+In my opinion, a strong choice would be to identify a core set of tests that can run quickly and run them for each new internal version. This will reduce the scope of potential problems prior to the release being provided to QA by ensuring that the build is functional. A wider (but similar depth) set of tests could be run nightly on the final build of the day.
+A regression suite that can be run at regular intervals would also provide a deeper dive into the product thus reducing the amount of repetitive testing required of manual QA and opening up more time for exploratory testing.
+Performance and load testing would also make sense to run either at regular intervals or upon high risk changes to the product.
+
+* At which point would these be most valuable? 
+Running some tests for each build could save a lot of time, assuming a reasonably small test set, as taking too much time on each build would be unfortunate. I've had good success running product-wide smoke tests overnight, and using regression suites with less frequency, and in a more targeted manner.
+
+* How would they be hooked into CI/CD? 
+Running some tests could be included as a build step. Outside of that running test sets at scheduled times.
+
+* What tools might you use to accomplish this?
+Jenkins and TeamCity both include functionality that would permit tests to be run either per build or scheduled.
+For the automation itself, Cucumber (or related) seems to be a good choice, along with Selenium, however other technology could be needed depending on the acceptance criteria
+
+* In what different testing environments might these be effective? 
+Ideally, automation would run against many environments, emulating as many different customer experiences as possible.
+
+* What tests might you run in each level of development/testing? (Think development versus staging versus production)
+Automated testing should be very light in development in order to avoid keeping people waiting. The largest portion of automated testing should be taking place in staging, as that would most closely mirror the customer experience and find the highest value defects. In my opinion, it is best to keep automated testing in production to a minimum, assuming there is no way to avoid it entirely.
+
+* CI/CD - what tool might you use and how might that control the frequency and breadth of tests being run?
+Jenkins and TeamCity (and I would imagine others) usually have options to schedule tests for a specific time or at a point in the pipeline.
+
+* Any hardware/software/cloud tools for executing the automated tests
+This would heavily depend on the testing environment, and the product itself. There are a lot of free options to use to do automated testing depending on scale and what is required of the tests to determine. I usually like to have a few environments to mirror different customer experiences, so possibly one or more VMs to create these environments. Performance and load testing are what are more likely to require specific outside tools.
+
+* What other tools might be valuable for measuring things such as performance under load or visual regressions?
+I've heard positive things regarding JMeter, and have had some experience using Azure for stress testing. For visual regressions Sikuli could be an option but there are also other image comparing softwares that could likely do the job as well.
