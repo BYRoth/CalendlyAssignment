@@ -8,7 +8,7 @@ When I enter 5 into the number field
 And I click the Play button
 Then I see a Tic Tac Toe board of height and width 5
 
-#Verifying here that X and O are alternating
+#Just verifying here that X and O are alternating
 Scenario: X and O Alternate
 
 #Test case to verify the accuracy of the winner message
