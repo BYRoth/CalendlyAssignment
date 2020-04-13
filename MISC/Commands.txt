@@ -1,1 +1,0 @@
-cucumber --color -r features/step_definitions features/TicTacToe_SmokeTest.feature
